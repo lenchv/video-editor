@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+  <title>video editor v.0.0.1</title>
+  <link href='css\style.css' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="js\hint.js" charset="utf-8"></script>
+</head>
+<body>
+  <div class = "content" onMouseOver="toolTip('Контент - изображения, звуки, видео, в Adobe Premiere там созадется \
+												последовательность (Sequence) и туда добавляются куски видео, звуки и прочее')" 
+												onMouseOut="toolTip()">
+    <div class = "effects">
+      <div>
+		  <select>
+			<option>Эффект1</option>
+			<option>Эффект2</option>
+			<option>Эффект3</option>
+		  </select>
+      </div>
+    </div>
+    Контент
+  </div>
+  <div class = "screen" onMouseOver="toolTip('Экран 1 - Просмотр видео после применения \
+												видео эффекта, выбор кадра и прочее')"
+												onMouseOut="toolTip()">Экран 1
+    <div class = "monitor"></div>
+    <div class = "control-panel"></div>
+  </div>
+  <div class = "screen" onMouseOver="toolTip('Экран 2 - Необработанное видео')" onMouseOut="toolTip()">Экран 2 
+    <div class = "monitor"></div>
+    <div class = "control-panel"></div>
+  </div>
+  <div class = "palette" onMouseOver="toolTip('Палитра - курсор, выделение, обрезка - \
+												основные инструменты для работы с контентом')" 
+												onMouseOut="toolTip()"> Палитра 
+  </div> 
+  <div class = "pasteboard"> 
+    <div class = "elements">
+      <div class = "info"  onMouseOver="toolTip('Информация о последовательности, ее длительность например')" onMouseOut="toolTip()">Информация</div>
+      <div class = "video"  onMouseOver="toolTip('Видео для обработки')" onMouseOut="toolTip()"></div>
+      <div class = "audio"  onMouseOver="toolTip('Аудио дорожки')" onMouseOut="toolTip()"></div>
+    </div>
+    <div class = "timeline"  onMouseOver="toolTip('временная шкала, тут нужен бегунок, который можно \
+													перемещать по шкале, и при останове на каком-либо \
+													моменте чтобы на Экран 1 выдавался текущий кадр, \
+													еще желательно было бы сделать там Zoom, чтобы \
+													делать более точную выборку кадров')" 
+													onMouseOut="toolTip()"> Time line
+	</div>
+    <div class = "video-line" onMouseOver="toolTip('Временная шкала для видео дорожек')" onMouseOut="toolTip()">Временная шкала для видео дорожек</div>
+    <div class = "audio-line" onMouseOver="toolTip('Временная шкала для аудио дорожек')" onMouseOut="toolTip()">Временная шкала для аудио дорожек</div>
+  </div>
+  <div id="floatTip"></div>  <!-- для всплывающей подсказки -->
+</body>
+</html>
