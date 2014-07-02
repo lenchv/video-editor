@@ -16,6 +16,7 @@ function moveTip(e) {
 }
 
 function toolTip(msg) {
+  event.stopPropagation();
   floatTipStyle = document.getElementById("floatTip").style;
   if (msg) {
     // Выводим текст подсказки
