@@ -98,3 +98,108 @@ div{
   background: #ffffe5; 
 }
 
+#button-edit, #button-add, #button-delete{
+	border:none;
+	margin: 2px;
+	background: url(sprites.png) no-repeat;
+	cursor: pointer;
+}
+
+#button-edit{
+	background-position: -16px 0;
+	width: 16px;
+	height: 16px;
+}
+
+#button-add{
+	background-position: 0 0;
+	width: 16px;
+	height: 16px;
+}
+
+#button-delete{
+	background-position: -32px 0;
+	width: 16px;
+	height: 16px;
+}
+
+.modal {
+	position: fixed;
+	width:100%;
+	height:100%;
+	top: 0;
+	left: 0;
+	margin: 0px;
+	background: rgba(127,127,127, 0.5);
+	z-index: 2;
+}
+
+.modal .window{
+	border-radius: 20px;
+	border: solid  1px;
+	position: absolute;
+	width: 400px;
+	height: 150px;
+	top: 25%;
+	left:50%;
+	margin-top:-75px;
+	margin-left:-200px;
+	background: white;
+	z-index: 3;
+}
+
+.close{
+	width: 16px;
+	height: 16px;
+	position: relative;
+	top: 8px;
+	left: 374px;
+	cursor: pointer;
+}
+
+.window > #addfile{
+	border: none;
+	position:absolute;
+	width: 400px;
+	top:40%;
+	left: 50%;
+	margin-left: -200px;
+}
+
+.window > #delfile{
+	border: none;
+	position:absolute;
+	width: 400px;
+	top:20%;
+	left: 50%;
+	margin-left: -200px;
+}
+
+td{
+	border-style:solid;
+	border-color: #AAA;
+	border-width: 1px;
+	width:100%;
+	margin:0px;
+}
+
+.file-name:hover{
+	background: rgba(64,125,255,0.2);
+	cursor: pointer;
+}
+
+#checked-file{
+	background: rgba(128,125,255,0.2);
+}
+
+.error{
+	border-style: dashed;
+	border-color: red;
+	color: red;
+	position: fixed;
+	bottom:0;
+	left:0;
+	background: white;
+	z-index: 3;
+}
+
