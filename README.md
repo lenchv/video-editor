@@ -1,5 +1,11 @@
 video-editor
 ============
+Навигация:
+<br>application/controllers/main.php - контроллер
+<br>application/views/video-editor.php - главный файл
+<br>-----------------/header.php - заголовок
+<br>-----------------/footer.php - футер
+<br>videofiles/ - папка для хранения загруженых файлов
 Сделано:
 <br>
 <br>Добавление видео файлов (и изображений) на сервер, пределом в 100Мб
