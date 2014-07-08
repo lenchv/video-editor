@@ -27,7 +27,7 @@ function containerEvent(event){
 		inputWindow.innerHTML = "<div id = 'addfile'>\
 			<form action='http://videoeditor.edu.ua/index.php/main/do_upload'\
 			method='post' accept-charset='utf-8' enctype='multipart/form-data'>\
-			<input type = 'file' name = 'userfile' size = '100000' />\
+			<input type = 'file' name = 'userfile' size = '200000' />\
 			<input type = 'submit' value = 'Load' />\
 			</form> </div>"
 	} else if(event.target.id == 'button-delete')
@@ -75,6 +75,7 @@ function containerEvent(event){
 		fileInfo.name = '_';
 		checkFile.currentSet = false;
 		removeVideo();
+		removeTrack();
 	} 
 	if (checkFile.ok)
 	{
@@ -91,3 +92,4 @@ function closeWindow(){
 	var w = document.getElementsByClassName("modal")[0];
 	w.parentNode.removeChild(w);
 }
+

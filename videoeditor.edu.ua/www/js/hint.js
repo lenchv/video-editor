@@ -1,17 +1,17 @@
-document.onmousemove = moveTip;
+п»їdocument.addEventListener('mousemove', moveTip, false);
 function moveTip(e) {
   floatTipStyle = document.getElementById("floatTip").style;
-  w = 250; // Ширина подсказки
-  x = e.pageX; // Координата X курсора
-  y = e.pageY; // Координата Y курсора
-  // Показывать слой справа от курсора 
+  w = 250; // РЁРёСЂРёРЅР° РїРѕРґСЃРєР°Р·РєРё
+  x = e.pageX; // РљРѕРѕСЂРґРёРЅР°С‚Р° X РєСѓСЂСЃРѕСЂР°
+  y = e.pageY; // РљРѕРѕСЂРґРёРЅР°С‚Р° Y РєСѓСЂСЃРѕСЂР°
+  // РџРѕРєР°Р·С‹РІР°С‚СЊ СЃР»РѕР№ СЃРїСЂР°РІР° РѕС‚ РєСѓСЂСЃРѕСЂР° 
   if ((x + w + 10) < document.body.clientWidth) { 
     floatTipStyle.left = x + 'px';
-  // Показывать слой слева от курсора
+  // РџРѕРєР°Р·С‹РІР°С‚СЊ СЃР»РѕР№ СЃР»РµРІР° РѕС‚ РєСѓСЂСЃРѕСЂР°
   } else { 
     floatTipStyle.left = x - w + 'px';
   }
-  // Положение от  верхнего края окна браузера
+  // РџРѕР»РѕР¶РµРЅРёРµ РѕС‚  РІРµСЂС…РЅРµРіРѕ РєСЂР°СЏ РѕРєРЅР° Р±СЂР°СѓР·РµСЂР°
   floatTipStyle.top = y + 20 + 'px';
 }
 
@@ -19,12 +19,12 @@ function toolTip(msg) {
   event.stopPropagation();
   floatTipStyle = document.getElementById("floatTip").style;
   if (msg) {
-    // Выводим текст подсказки
+    // Р’С‹РІРѕРґРёРј С‚РµРєСЃС‚ РїРѕРґСЃРєР°Р·РєРё
     document.getElementById("floatTip").innerHTML = msg;
-    // Показываем подсказку
+    // РџРѕРєР°Р·С‹РІР°РµРј РїРѕРґСЃРєР°Р·РєСѓ
     floatTipStyle.display = "block";
   } else { 
-    // Прячем подсказку
+    // РџСЂСЏС‡РµРј РїРѕРґСЃРєР°Р·РєСѓ
     floatTipStyle.display = "none";
   } 
 }

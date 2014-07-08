@@ -14,7 +14,7 @@ class Main extends CI_Controller{
 	  $config['upload_path'] = './videofiles/';
 	  $config['allowed_types'] = 'mp4|webm|ogv|ogg|png|jpg';
 	  $config['file_name'] = 'video';
-	  $config['max_size'] = '100000';
+	  $config['max_size'] = '200000';
 	  //$config['overwrite'] = 'TRUE';
 	  
 	  $this->load->library('upload', $config);
@@ -35,7 +35,7 @@ class Main extends CI_Controller{
 	  $file_path = './videofiles/'.$this->inrus($file); 
 	  if(file_exists($file_path)) {
 	    unlink($file_path);
-	    $data = array('error' => '');
+		$data = array('error' => '');
 	    $this->loadPage($data);
 	  } else {
 	    $data = array('error' => "<div class = 'error'> File not found!</div>");
@@ -49,7 +49,6 @@ class Main extends CI_Controller{
   }
   
   public function do_rename($file) {
-	echo $_POST['new_name'];
 	$file_path = './videofiles/'.$this->inrus($file); 
 	if (isset($_POST['new_name']))
 		$new_name = "./videofiles/".$_POST['new_name'].strrchr($file,'.');

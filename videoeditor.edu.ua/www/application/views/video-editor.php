@@ -21,19 +21,32 @@
 	?>
 	</table>
   </div>
-  <div class = "screen" onMouseOver="toolTip('Экран')" onMouseOut="toolTip()">
-    <div id = "monitor" onMouseOver="toolTip('Отображение видеопотока')" onMouseOut="toolTip()"></div>
-    <div class = "control-panel" onMouseOver="toolTip('Панель управления видео')" onMouseOut="toolTip()"></div>
+  <div class = "screen">
+    <div id = "monitor"></div>
+    <div class = "control-panel-video">
+		<div id = 'time-video' onMouseOver="toolTip('Текущее время')" onMouseOut="toolTip()">0:00:00</div>
+		<span style = 'display: block; margin-left :140px;'>
+		<div id = 'button-left' onMouseOver="toolTip('На 1 секунду назад')" onMouseOut="toolTip()"></div>
+		<div id = 'button-play' onMouseOver="toolTip('Play/Pause')" onMouseOut="toolTip()"></div>
+		<div id = 'button-right' onMouseOver="toolTip('На 1 секунду вперед')" onMouseOut="toolTip()"></div>
+		<div id = 'button-loop' onMouseOver="toolTip('Зациклить')" onMouseOut="toolTip()"></div>
+		</span>
+		<div id = 'volume-slider'><div id = 'volume-fill'></div><div id = 'volume-thumb'></div></div>
+	</div>
+	<div id='info-panel'></div>
   </div>
   
   <div class = "pasteboard">
 	<div class = "elements"> 
-	  <div class = "info" onMouseOver="toolTip('Продолжительность видео')" onMouseOut="toolTip()">Info</div>
-	  <div class = "video" onMouseOver="toolTip('Имя текущего видео')" onMouseOut="toolTip()"></div>
+	  <div id = "info" onMouseOver="toolTip('Продолжительность видео')" onMouseOut="toolTip()">0:00:00</div>
+	  <div id = "video" onMouseOver="toolTip('Имя текущего видео')" onMouseOut="toolTip()"></div>
 	</div>
-    <div class = "timeline"  onMouseOver="toolTip('временная шкала, разметка, бегунок')" onMouseOut="toolTip()"> Time line
+	
+    <div id = "video-line" onMouseOver="toolTip('Временная шкала для видео дорожки')" onMouseOut="toolTip()">
+	<div id = "timeline"  onMouseOver="toolTip('временная шкала, разметка, бегунок')" onMouseOut="toolTip()">
+	  <div id = 'line-thumb'></div>
 	</div>
-    <div class = "video-line" onMouseOver="toolTip('Временная шкала для видео дорожки')" onMouseOut="toolTip()">Временная шкала для видео дорожек</div>
+	</div>
   </div>
   <div id="floatTip"></div>  <!-- для всплывающей подсказки -->
  <?php echo $error;?>

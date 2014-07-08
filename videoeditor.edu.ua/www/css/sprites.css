@@ -1,0 +1,133 @@
+﻿/*Кнопки удаления, добавления и переименования*/
+#button-edit, #button-add, #button-delete{
+	border:none;
+	margin: 2px;
+	background: url(sprites.png) no-repeat;
+	cursor: pointer;
+}
+
+#button-edit{
+	background-position: -16px 0;
+	width: 16px;
+	height: 16px;
+}
+
+#button-add{
+	background-position: 0 0;
+	width: 16px;
+	height: 16px;
+}
+
+#button-delete{
+	background-position: -32px 0;
+	width: 16px;
+	height: 16px;
+}
+/*Кнопки управления видео*/
+#button-play, #button-right, #button-left, #button-loop, #button-pause{
+	border:none;
+	margin: 2px;
+	background: url(video-control.png) no-repeat;
+	cursor: pointer;
+}
+/*
+#pauseoff:hover{
+background-position: -64px -64px;
+width: 64px;
+height: 64px;
+}
+#playoff{
+background-position: 0 0;
+width: 64px;
+height: 64px;
+}
+#playoff:hover{
+background-position: 0 -64px;
+width: 64px;
+height: 64px;
+}
+#rightoff{
+background-position: -255px 0;
+width: 64px;
+height: 64px;
+}
+#rightoff:hover{
+background-position: -255px -64px;
+width: 64px;
+height: 64px;
+}
+#leftoff{
+background-position: -192px 0;
+width: 64px;
+height: 64px;
+}
+#leftoff:hover{
+background-position: -192px -64px;
+width: 64px;
+height: 64px;
+}
+#loopoff{
+background-position: -128px 0;
+width: 64px;
+height: 64px;
+}
+#loopoff:hover{
+background-position: -128px -64px;
+width: 64px;
+height: 64px;
+}
+#pauseoff{
+background-position: -64px 0;
+width: 64px;
+height: 64px;
+}*/
+#button-pause:hover{
+background-position: -32px 0px;
+width: 32px;
+height: 32px;
+}
+#button-play{
+background-position: 0 0;
+width: 32px;
+height: 32px;
+}
+#button-play:hover{
+background-position: 0 -32px;
+width: 32px;
+height: 32px;
+}
+#button-right{
+background-position: -128px 0;
+width: 32px;
+height: 32px;
+}
+#button-right:hover{
+background-position: -128px -32px;
+width: 32px;
+height: 32px;
+}
+#button-left{
+background-position: -96px 0;
+width: 32px;
+height: 32px;
+}
+#button-left:hover{
+background-position: -96px -32px;
+width: 32px;
+height: 32px;
+}
+#button-loop{
+background-position: -64px 0;
+width: 32px;
+height: 32px;
+}
+#button-loop:hover{
+background-position: -64px -32px;
+width: 32px;
+height: 32px;
+}
+#button-pause{
+background-position: -32px -32px;
+width: 32px;
+height: 32px;
+}
