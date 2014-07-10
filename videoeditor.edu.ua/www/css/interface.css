@@ -91,7 +91,8 @@
 #line-thumb {
 	border: 0;
 	margin: 0;
-	background: url(thumb24.png) no-repeat;
+	background: url(buttons.png) no-repeat;
+	background-position: -48px -160px;
 	cursor: pointer;
 	width: 5px;
 	height: 24px;
@@ -117,6 +118,7 @@
   -moz-user-select: none;
    -ms-user-select: none;
    background: url(metric.png);
+   cursor: pointer;
 }
 
 .line-track {
@@ -133,6 +135,7 @@
 	border:none;
 	height: 100%;
 	width: 0;
+	left:0;
 }
 
 
@@ -174,12 +177,23 @@
 }
 
 .close{
+    background: url(buttons.png) no-repeat;
+	background-position: -32px -160px;
 	width: 16px;
 	height: 16px;
+	border:none;
 	position: relative;
 	top: 8px;
 	left: 374px;
 	cursor: pointer;
+}
+
+.close:hover{
+    background: #EEE;
+    background: url(buttons.png) no-repeat;
+	background-position: -32px -176px;
+	width: 16px;
+	height: 16px;
 }
 
 .window > #addfile{
@@ -242,7 +256,7 @@ video {
 	background: #EEE;
 	position: relative;
 	top: 50%;
-	left: 5%;
+	cursor: pointer;
 }
 
 #volume-fill {

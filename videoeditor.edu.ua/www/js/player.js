@@ -1,16 +1,4 @@
-﻿/*video.addEventListener('dblclick', getMonitor, false);
-  function getMonitor(event) {
-	alert(1);
-	element = event.target;
-	if(element.requestFullscreen) {
-		element.requestFullscreen();
-	} else if(element.webkitrequestFullscreen) {
-		element.webkitRequestFullscreen();
-	} else if(element.mozRequestFullscreen) {
-		element.mozRequestFullScreen();
-	}
-  }*/
-var video;
+﻿var video;
 	//var info = document.getElementById('info-panel');
 /**Функция вызывается, когда выбирается видео файл, и она создает
 <video> элемент, и вызывает все события video
@@ -34,15 +22,28 @@ function fileInScreen() {
 	monitor.appendChild(videotag);
 	videotag.load();
 	video = document.getElementsByTagName('video')[0];
+	
 	//событие сработает когда загрузятся данные
 	video.addEventListener('loadedmetadata', function(e){
 	  var info = document.getElementById('info');
+	  var progress = document.getElementsByClassName('progress')[0];
 	  info.innerHTML = parseTime(this.duration);
 	  video.volume = ((getComputedStyle(document.getElementById('volume-fill')).width).slice(0,-2))/100; //получаем стиль у элемента volume-fill, берем его ширину, убераем px, и делим на 100
 	  addTrack(video.duration);
 	  timeLine();
-	  var inform = document.getElementById('info-panel');
-	  inform.innerHTML = video.buffered.start(0) + ' : ' + video.buffered.end(0) ;	
+	  //если видео полностью загружено, то линия загрузки полностью заполнена
+	  if(Math.floor(video.buffered.end(0)) >= Math.floor(video.duration))
+	    progress.style.width =  video.buffered.end(0)*10 + 'px' ;
+	}, false);
+	
+	//событие, когда видео запустили
+	video.addEventListener('play',function(event){
+	  document.getElementById('button-play').id = 'button-pause';
+	}, false);
+	
+	//событие, когда видео поставили на паузу
+	video.addEventListener('pause',function(event){
+	  document.getElementById('button-pause').id = 'button-play';
 	}, false);
 	
 	//событие, когда видео закончится
@@ -53,9 +54,12 @@ function fileInScreen() {
 	//событие, когда видео прогружается
 	video.addEventListener('progress',function(event){
 	  var progress = document.getElementsByClassName('progress')[0];
-	  progress.style.width =  video.buffered.end(0)*10 + 'px' ;	
+	  var end =  video.buffered.end(getBuffer())
+	  var start =  video.buffered.start(getBuffer())
+	  progress.style.width = (end - start)*10 + 'px' ;	
+	  progress.style.left = start*10 + 'px' ;
 	}, false);
-	
+		
 	//событие, когда видео запущено
 	video.addEventListener('timeupdate',function(event){
 	  var info = document.getElementById('time-video');
@@ -63,9 +67,101 @@ function fileInScreen() {
 	  info.innerHTML = parseTime(this.currentTime); 	
       document.getElementById('line-thumb').style.left = this.currentTime*10-2 + 'px';
 	  /*if(this.currentTime*10 > videoLine.clientWidth)
-	    videoLine.scrollLeft = this.currentTime*10 - videoLine.clientWidth+5;*/	 	
+	    videoLine.scrollLeft = this.currentTime*10 - videoLine.clientWidth+5;*/
+		
 	}, false);
+	
+	//событие, когда изменяется звук
+	video.addEventListener('volumechange',function(event){
+	  var volume = document.getElementById('volume');
+	  if(!this.muted)
+	  if(this.volume > 0.5) {
+		volume.className = 'button-full-sound';
+	  } else if(this.volume > 0.06){
+		volume.className = 'button-half-sound';
+	  } else {
+	    volume.className = 'button-empty-sound';
+		this.volume = 0;
+	  }
+	}, false);
+	
+	//событие, когда произошла ошибка
+	video.addEventListener('error',function(event){
+      //обработка ошибок
+	  errMessage(failed(event));	  
+	}, false);
+	
+	//событие, когда загрузка не продолжается более 3х секунд
+	video.addEventListener('stalled',function(event){
+       //если слишком долго длится загрузка	
+	   errMessage('Слишком долго длится загрузка видео, перезагрузите страницу!');
+	}, false);
+	
+	//событие, когда данные мультимедиа загружаются в текущей позиции воспроизведения
+	video.addEventListener('loadeddata',function(event){
+	  //...
+	}, false);
+	
+	//событие, когда начинает поиск данных мультимедиа
+	video.addEventListener('loadstart',function(event){
+	  //...	
+	}, false);
+	
+	//событие, когда видео готово к воспроизведению
+	video.addEventListener('canplaythrough',function(event){
+	 //..		
+	}, false);
+	
+	//событие, когда ничего не загружено
+	video.addEventListener('emptied',function(event){
+      //если ничего не загружено
+	}, false);
+	
+	//событие, когда происходит запрос видео
+	video.addEventListener('loadstart',function(event){
+       //обращение к файлу	
+	}, false);
+	
+	//событие, когда не доступен следующий кадр(возможно видео буферезиуется)
+	video.addEventListener('waiting',function(event){
+       //буферизация
+	}, false);
+	
+	//full screen
+	video.addEventListener('dblclick', function(event) {
+	  if(this.fullScreenEnabled || document.webkitIsFullScreen|| this.mozFullScreenEnabled) {	
+	    cancelFullScreen(this);
+	  } else
+	  {
+		fullScreen(this);
+	  }
+    }, false);
 	//alert(video.canPlayType(fileInfo.typeMIME+"; codecs = '"+codec+"'"));
+  }
+}
+
+/**
+Полноэкранный режим
+*/
+function fullScreen(elem) {
+  if(elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if(elem.webkitRequestFullScreen) {
+    elem.webkitRequestFullscreen();
+  } else if(elem.mozRequestFullscreen) {
+    elem.mozRequestFullScreen();
+  }
+}
+/**
+Выключение полноэкранного режима
+*/
+function cancelFullScreen(elem) {
+  if(elem.exitFullscreen) {
+	elem.exitFullscreen();
+  } else if(elem.webkitExitFullScreen) {
+	elem.webkitExitFullscreen();
+  } else if(elem.mozExitFullscreen) {
+	elem.mozExitFullScreen();
   }
 }
 
@@ -73,12 +169,10 @@ document.addEventListener('click',function(event){
   if(event.target.id == 'button-play')
   {
 	video.play();
-	event.target.id = 'button-pause';
   } else
   if(event.target.id == 'button-pause')
   {
 	video.pause();
-	event.target.id = 'button-play'
   }else
   if(event.target.id == 'button-right')
   {
@@ -95,6 +189,26 @@ document.addEventListener('click',function(event){
 	} else {
 		video.loop = true;
 	}
+  } else
+  if(event.target.id == 'button-full-screen')
+  {
+	fullScreen(video);
+  } else
+  if(event.target.id == 'volume')
+  {
+	if(video.muted == true) {
+		video.muted = false;
+		if(video.volume > 0.5) {
+		  event.target.className = 'button-full-sound';
+		} else {
+		  event.target.className = 'button-half-sound';
+		}
+		document.getElementById('volume-fill').style.width = video.volume*100 + 'px';
+	} else {
+		video.muted = true;
+		event.target.className = 'button-empty-sound';
+		document.getElementById('volume-fill').style.width = '0';
+	}
   }
 }, false);
 /**
@@ -102,7 +216,6 @@ document.addEventListener('click',function(event){
 */
 window.onload = function(){
   document.getElementById('volume-thumb').onmousedown = function (e) {
-    var self = this;
 	var slider = this.parentNode;
 	var fill = slider.children[0];
 	var shiftX = slider.getBoundingClientRect().left;
@@ -122,7 +235,16 @@ window.onload = function(){
 	  document.onmousemove = document.onmouseup = null; 
 	}
 	return false;
-  };
+  }
+  
+  document.getElementById('volume-slider').onclick = function(e) {
+    
+    var fill = this.children[0];
+	var shiftX = this.getBoundingClientRect().left;
+	var coord = e.pageX - shiftX;
+	video.volume = coord/100;
+	fill.style.width = coord+'px';
+  }
 }
 /**
 Удаляет видео из документа
@@ -131,7 +253,9 @@ function removeVideo(){
   var video = document.getElementsByTagName('video')[0];
   video.parentNode.removeChild(video);
 }
-
+/**
+Разбивает время на часы минуты и секунды и возвращает в виде строки
+*/
 function parseTime(time){
   var seconds = time;
   var hours = Math.floor(seconds/3600);
@@ -142,8 +266,9 @@ function parseTime(time){
   if(minutes.toString().length < 2) minutes = '0' + minutes;
   return hours + ':' + minutes + ':' + seconds;
 }
-
-
+/**
+Добавляет дорожку на шкалу времени
+*/
 function addTrack(duration) {
   var nameTrack = document.createElement('div');
   var trackLine = document.createElement('div');
@@ -162,12 +287,12 @@ function addTrack(duration) {
   trackLine.appendChild(progress);
   areaForTrack.appendChild(trackLine);
 }
-
+/**
+Маркерует линейку времени по 10 секунд
+*/
 function marking(elem, length){
   var i = 10;
   while (i <= length) {
-    //alert(num.innerHTML);
-	
     var num = document.createElement('div');
     num.className = 'marking';
     num.innerHTML = i+'';
@@ -175,7 +300,9 @@ function marking(elem, length){
 	i+=10;
   }
 }
-
+/**
+Удаляет дорожку со шкалы времени
+*/
 function removeTrack() {
   var name = document.getElementsByClassName('name-track')[0];
   var line = document.getElementsByClassName('line-track')[0];
@@ -191,12 +318,13 @@ function removeTrack() {
 }
 /**Бегунок для шкалы времени*/
 function timeLine(){
-  document.getElementById('line-thumb').ondragstart = function(){return false;}
-  document.getElementById('line-thumb').onmousedown = function (e) {
+  var thumb = document.getElementById('line-thumb');
+  var lineTrack = document.getElementsByClassName('line-track')[0];
+  thumb.ondragstart = function(){return false;}
+  thumb.onmousedown = function (e) {
     var self = this;
-	var lineTrack = document.getElementsByClassName('line-track')[0];
 	var videoLine = document.getElementById('video-line');
-	var shiftX = lineTrack.getBoundingClientRect().left;
+    var shiftX = lineTrack.getBoundingClientRect().left;
 	document.onmousemove = function(e) {
 	  var coord = e.clientX - shiftX;
 	  if(coord > 0 && coord < (video.duration*10)) {
@@ -215,34 +343,57 @@ function timeLine(){
 	  document.onmousemove = document.onmouseup = null; 
 	}
 	return false;
-  };
+  }
+  
+  document.getElementById('timeline').onclick = function(event) {
+    var shiftX = lineTrack.getBoundingClientRect().left;
+    var coord = event.clientX - shiftX;
+    thumb.style.left = coord + 'px'; 
+	video.currentTime = coord/10;
+  }
 }
 
-/***************************************************/
-function noVideo() {
+/**
+Получение текущего буфера
+*/
+function getBuffer() {
+  for(var i = 0; i < video.buffered.length; i++)
+  {
+    if(video.currentTime < video.buffered.end(i))
+	  return i;
+  }
+}
+
+/**
+Отображение сообщения об ошибки 5 секунд
+*/
+function errMessage(msg) {
   var err = document.createElement('div');
-  err.className = 'no-video';
-  err.innerHTML = 'no video';
-  return err;
+  err.className = 'error';
+  err.innerHTML = msg;
+  document.body.appendChild(err);
+  setTimeout(function (){document.body.removeChild(err);}, 5000);
 }
-
+/**
+Дешифрация ошибки видео
+*/
 function failed(e) {
-   // video playback failed - show a message saying why
    switch (e.target.error.code) {
      case e.target.error.MEDIA_ERR_ABORTED:
-       alert('You aborted the video playback.');
+       return 'Вы отменили загрузку видео.';
        break;
      case e.target.error.MEDIA_ERR_NETWORK:
-       alert('A network error caused the video download to fail part-way.');
+       return 'Проблемы с сетью.';
        break;
      case e.target.error.MEDIA_ERR_DECODE:
-       alert('The video playback was aborted due to a corruption problem or because the video used features your browser did not support.');
+       return 'Выбранный тип видео не поддерживается.';
        break;
      case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-       alert('The video could not be loaded, either because the server or network failed or because the format is not supported.');
+       return 'Видео не загрузилось, потому что проблемы с сервером или сетью, или потому что выбранный формат не поддерживается.';
        break;
      default:
-       alert('An unknown error occurred.');
+       return 'Неизвестная ошибка.';
        break;
    }
  }
+

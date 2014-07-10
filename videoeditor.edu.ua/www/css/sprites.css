@@ -1,86 +1,39 @@
 ﻿/*Кнопки удаления, добавления и переименования*/
-#button-edit, #button-add, #button-delete{
+#button-edit, #button-add, #button-delete, 
+#button-play, #button-right, #button-left, 
+#button-loop, #button-pause, #button-full-screen,
+.button-full-sound, .button-half-sound, .button-empty-sound{
 	border:none;
 	margin: 2px;
-	background: url(sprites.png) no-repeat;
+	background: url(buttons.png) no-repeat;
 	cursor: pointer;
 }
 
 #button-edit{
-	background-position: -16px 0;
-	width: 16px;
-	height: 16px;
+	background-position: 0 -160px;
+	width: 32px;
+	height: 32px;
 }
 
 #button-add{
-	background-position: 0 0;
-	width: 16px;
-	height: 16px;
+	background-position: -32px -64px;
+	width: 32px;
+	height: 32px;
+}
+
+#button-add:hover{
+	background-position: 0 -64px;
+	width: 32px;
+	height: 32px;
 }
 
 #button-delete{
-	background-position: -32px 0;
-	width: 16px;
-	height: 16px;
+	background-position: 0 -128px;
+	width: 32px;
+	height: 32px;
 }
 /*Кнопки управления видео*/
-#button-play, #button-right, #button-left, #button-loop, #button-pause{
-	border:none;
-	margin: 2px;
-	background: url(video-control.png) no-repeat;
-	cursor: pointer;
-}
-/*
-#pauseoff:hover{
-background-position: -64px -64px;
-width: 64px;
-height: 64px;
-}
-#playoff{
-background-position: 0 0;
-width: 64px;
-height: 64px;
-}
-#playoff:hover{
-background-position: 0 -64px;
-width: 64px;
-height: 64px;
-}
-#rightoff{
-background-position: -255px 0;
-width: 64px;
-height: 64px;
-}
-#rightoff:hover{
-background-position: -255px -64px;
-width: 64px;
-height: 64px;
-}
-#leftoff{
-background-position: -192px 0;
-width: 64px;
-height: 64px;
-}
-#leftoff:hover{
-background-position: -192px -64px;
-width: 64px;
-height: 64px;
-}
-#loopoff{
-background-position: -128px 0;
-width: 64px;
-height: 64px;
-}
-#loopoff:hover{
-background-position: -128px -64px;
-width: 64px;
-height: 64px;
-}
-#pauseoff{
-background-position: -64px 0;
-width: 64px;
-height: 64px;
-}*/
+
 #button-pause:hover{
 background-position: -32px 0px;
 width: 32px;
@@ -130,4 +83,54 @@ height: 32px;
 background-position: -32px -32px;
 width: 32px;
 height: 32px;
+}
+
+#button-full-screen {
+	background-position: -32px -128px;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	right:0;
+}
+
+#button-full-screen:hover {
+	background-position: -64px -128px;
+	width: 32px;
+	height: 32px;
+}
+
+.button-full-sound {
+	background-position: -64px -64px;
+	width: 32px;
+	height: 32px;
+}
+
+.button-full-sound:hover {
+	background-position: -96px -64px;
+	width: 32px;
+	height: 32px;
+}
+
+.button-half-sound {
+	background-position: 0 -96px;
+	width: 32px;
+	height: 32px;
+}
+
+.button-half-sound:hover {
+	background-position: -32px -96px;
+	width: 32px;
+	height: 32px;
+}
+
+.button-empty-sound {
+	background-position: -64px -96px;
+	width: 32px;
+	height: 32px;
+}
+
+.button-empty-sound:hover {
+	background-position: -96px -96px;
+	width: 32px;
+	height: 32px;
 }

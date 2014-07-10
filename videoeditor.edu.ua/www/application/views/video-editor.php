@@ -25,13 +25,14 @@
     <div id = "monitor"></div>
     <div class = "control-panel-video">
 		<div id = 'time-video' onMouseOver="toolTip('Текущее время')" onMouseOut="toolTip()">0:00:00</div>
-		<span style = 'display: block; margin-left :140px;'>
+		<span style = 'display: block; margin-left :130px;'>
 		<div id = 'button-left' onMouseOver="toolTip('На 1 секунду назад')" onMouseOut="toolTip()"></div>
 		<div id = 'button-play' onMouseOver="toolTip('Play/Pause')" onMouseOut="toolTip()"></div>
 		<div id = 'button-right' onMouseOver="toolTip('На 1 секунду вперед')" onMouseOut="toolTip()"></div>
 		<div id = 'button-loop' onMouseOver="toolTip('Зациклить')" onMouseOut="toolTip()"></div>
 		</span>
-		<div id = 'volume-slider'><div id = 'volume-fill'></div><div id = 'volume-thumb'></div></div>
+		<div id = 'volume' class = 'button-half-sound'></div><div id = 'volume-slider'><div id = 'volume-fill'></div><div id = 'volume-thumb'></div></div>
+		<div id = 'button-full-screen'></div>
 	</div>
 	<div id='info-panel'></div>
   </div>

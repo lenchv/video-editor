@@ -2,7 +2,7 @@
 //Структура описывающая информацию о файле
 var fileInfo = {
 	name : '_',
-	dir : './videofiles/',
+	dir : 'http://videoeditor.edu.ua/videofiles/',
 	typeMIME: ''
 };
 //Структура с костылями для выделения файла
@@ -20,7 +20,6 @@ function containerEvent(event){
     var inputWindow = document.createElement('div');
 	var butClose = document.createElement('div');
 	butClose.className = 'close';
-	butClose.innerHTML = 'x'; //заменить на спрайт закрытия окна
 	//Вывод формы в окно в зависимости от выбранной задачи
 	if(event.target.id == 'button-add')
 	{
