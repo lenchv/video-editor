@@ -36,8 +36,8 @@ class Main extends CI_Controller{
 	  }
   }
   
-  public function do_delete($file, $id) {
-	if(isset($file))
+  public function do_delete($id) {
+	if(isset($id))
 	{
 	  $file_path = $this->mydbfileinfo->getPath($id); 
 	  if(file_exists($file_path)) {
