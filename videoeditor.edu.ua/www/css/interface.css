@@ -6,13 +6,13 @@
   text-align:center;
 }
 
-.content {
+#content {
   width: 30%;
   height: 400px;
   overflow: scroll;
 }
 
-.content .control-panel{
+#content .control-panel{
   position: relative;
   width:100%;
   height: 10%;;
@@ -151,7 +151,7 @@
   background: #ffffe5; 
 }
 
-.modal {
+#modal {
 	position: fixed;
 	width:100%;
 	height:100%;
@@ -162,7 +162,7 @@
 	z-index: 2;
 }
 
-.modal .window{
+#modal #window{
 	border-radius: 20px;
 	border: solid  1px;
 	position: absolute;
@@ -176,7 +176,7 @@
 	z-index: 3;
 }
 
-.close{
+#close{
     background: url(buttons.png) no-repeat;
 	background-position: -32px -160px;
 	width: 16px;
@@ -188,7 +188,7 @@
 	cursor: pointer;
 }
 
-.close:hover{
+#close:hover{
     background: #EEE;
     background: url(buttons.png) no-repeat;
 	background-position: -32px -176px;
@@ -196,7 +196,7 @@
 	height: 16px;
 }
 
-.window > #addfile{
+#window > #addfile{
 	border: none;
 	position:absolute;
 	width: 400px;
@@ -205,7 +205,7 @@
 	margin-left: -200px;
 }
 
-.window > #delfile{
+#window > #delfile{
 	border: none;
 	position:absolute;
 	width: 400px;

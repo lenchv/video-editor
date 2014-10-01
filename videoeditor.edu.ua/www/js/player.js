@@ -1,28 +1,28 @@
-﻿var video;
+﻿
 	//var info = document.getElementById('info-panel');
 /**Функция вызывается, когда выбирается видео файл, и она создает
 <video> элемент, и вызывает все события video
 */ 
 function fileInScreen() {
   var monitor = document.getElementById('monitor');
-  var videotag = document.createElement('video');
+  video = document.createElement('video');
   var source = document.createElement('source');
-  var codec;
+  //var codec;
   source.setAttribute('src',fileInfo.dir+fileInfo.name);
   //videotag.controller = new MediaController(); //media controller
-  switch(fileInfo.typeMIME) {
-    case 'video/mp4' : codec = 'avc1.42E01E,mp4a.40.2'; break;
+  /*switch(fileInfo.typeMIME) {
+    case 'video/mp4' : codec = 'mp4v.20.240, mp4v.20.8, avc1.64001E, avc1.4D401E, avc1.58A01E, avc1.42E01E, mp4a.40.2'; break;
     case 'video/webm' : codec = 'vp8,theora'; break;
-    case 'video/ogg' : codec = 'theora,vorbis'; break;
+    case 'video/ogg' : codec = 'dirac, vorbis, speex, theora'; break;
+    case 'video/3gpp' : codec = 'mp4v.20.8, samr'; break;
 	default: codec = '';
-  }
-  if (!!codec) {
-	source.setAttribute('type',fileInfo.typeMIME+"; codecs = '"+codec+"'");
-	videotag.appendChild(source);
-	monitor.appendChild(videotag);
-	videotag.load();
-	video = document.getElementsByTagName('video')[0];
-	
+  }*/
+
+	source.setAttribute('type',fileInfo.typeMIME+"; codecs = '"+fileInfo.codec+"'");
+	video.appendChild(source);
+	monitor.appendChild(video);
+	video.load();
+
 	//событие сработает когда загрузятся данные
 	video.addEventListener('loadedmetadata', function(e){
 	  var info = document.getElementById('info');
@@ -54,8 +54,8 @@ function fileInScreen() {
 	//событие, когда видео прогружается
 	video.addEventListener('progress',function(event){
 	  var progress = document.getElementsByClassName('progress')[0];
-	  var end =  video.buffered.end(getBuffer())
-	  var start =  video.buffered.start(getBuffer())
+	  var end =  video.buffered.end(getBuffer());
+	  var start =  video.buffered.start(getBuffer());
 	  progress.style.width = (end - start)*10 + 'px' ;	
 	  progress.style.left = start*10 + 'px' ;
 	}, false);
@@ -137,7 +137,6 @@ function fileInScreen() {
 	  }
     }, false);
 	//alert(video.canPlayType(fileInfo.typeMIME+"; codecs = '"+codec+"'"));
-  }
 }
 
 /**
@@ -214,7 +213,8 @@ document.addEventListener('click',function(event){
 /**
 	Событие на изменение бегунка звука
 */
-window.onload = function(){
+
+var moveVolumeThumb = function() {
   document.getElementById('volume-thumb').onmousedown = function (e) {
 	var slider = this.parentNode;
 	var fill = slider.children[0];
@@ -230,12 +230,12 @@ window.onload = function(){
 	  } else {
 	    fill.style.width = '0px'
 	  }
-	}
+	};
 	document.onmouseup = function(){
 	  document.onmousemove = document.onmouseup = null; 
-	}
+	};
 	return false;
-  }
+  };
   
   document.getElementById('volume-slider').onclick = function(e) {
     
@@ -244,8 +244,8 @@ window.onload = function(){
 	var coord = e.pageX - shiftX;
 	video.volume = coord/100;
 	fill.style.width = coord+'px';
-  }
-}
+  };
+};
 /**
 Удаляет видео из документа
 */
